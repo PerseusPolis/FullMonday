@@ -4,7 +4,6 @@ import { TmdbService } from '../../services/tmdb.service';
 import { Movie } from '../../models/movie';
 import { LoadingController, IonContent } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
-import { FoodService } from 'src/app/services/food.service';
 import { Food } from 'src/app/models/food';
 
 @Component({
