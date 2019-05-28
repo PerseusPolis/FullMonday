@@ -4,6 +4,8 @@ import { TmdbService } from '../../services/tmdb.service';
 import { Movie } from '../../models/movie';
 import { LoadingController, IonContent } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
+import { FoodService } from 'src/app/services/food.service';
+import { Food } from 'src/app/models/food';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ export class HomePage implements OnInit {
   segment: string;
   page: number;
   movies: Movie[];
+  food: Food[] = [];
   @ViewChild(IonContent) content: IonContent;
 
   constructor(
@@ -30,8 +33,30 @@ export class HomePage implements OnInit {
     this.segment = segmentValue;
     this.page = 1;
     this.movies = null;
+    this.food = null;
     this.content.scrollToTop();
-    this.loadMovies();
+    if(this.segment == "food"){
+      this.food = [];
+      let food_1 = {
+        name: "Palomitas",
+        picture: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/12/8/1/JE0205H_Cacio-Pepe-Popcorn_s4x3.jpg.rend.hgtvcom.616.462.suffix/1481216491893.jpeg",
+        price: 50,
+        quantity: 0
+      }
+      this.food.push(food_1);
+      this.food.push(food_1);
+      this.food.push(food_1);
+      this.food.push(food_1);
+      this.food.push(food_1);
+      this.food.push(food_1);
+      this.food.push(food_1);
+      this.food.push(food_1);
+    }else if(this.segment == "profile"){
+
+    }else{
+      this.loadMovies();
+    }
+    
   }
 
   onNextPage() {
