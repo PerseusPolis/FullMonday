@@ -5,6 +5,7 @@ import { Movie } from '../../models/movie';
 import { LoadingController, IonContent } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { Food } from 'src/app/models/food';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,8 @@ export class HomePage implements OnInit {
   page: number;
   movies: Movie[];
   food: Food[] = [];
+  profile: User;
+  profile_active: boolean = false;
   @ViewChild(IonContent) content: IonContent;
 
   constructor(
@@ -33,6 +36,8 @@ export class HomePage implements OnInit {
     this.page = 1;
     this.movies = null;
     this.food = null;
+    this.profile = null;
+    this.profile_active = false;
     this.content.scrollToTop();
     if(this.segment == "food"){
       this.food = [];
@@ -51,7 +56,12 @@ export class HomePage implements OnInit {
       this.food.push(food_1);
       this.food.push(food_1);
     }else if(this.segment == "profile"){
-
+      this.profile_active = true;
+      this.profile = new User();
+      this.profile.name = "John Doe";
+      this.profile.email = "john_doe@gmail.com";
+      this.profile.birthday = "12 de Mayo de 1990";
+      this.profile.registro = "Miembro desde Abril 2019";
     }else{
       this.loadMovies();
     }

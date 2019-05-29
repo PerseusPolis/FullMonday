@@ -15,6 +15,7 @@
   <h1 *ngIf="movies && segment == 'top'">Top</h1>
   <h1 *ngIf="movies && segment == 'upcoming'">Próximamente</h1>
   <h1 *ngIf="food && segment == 'food'">Alimentos</h1>
+  <h1 *ngIf="profile_active && segment == 'profile'">Perfil</h1>
 
   <div class="movies-flex" *ngIf="movies">
     <div class="movie" *ngFor="let movie of movies" (click)="onMovieDetail(movie.id)">
@@ -33,6 +34,15 @@
       <img [src]="element.picture">
       <h3>{{element.name}}</h3>
       <p>${{element.price}}</p>
+    </div>
+  </div>
+
+  <div *ngIf="profile_active">
+    <div class="perfil">
+      <p>{{profile.name}}</p>
+      <p>{{profile.email}}</p>
+      <p>{{profile.birthday}}</p>
+      <p>{{profile.registro}}</p>
     </div>
   </div>
 
@@ -61,7 +71,7 @@
       </div>
       <div class="tab" [ngClass]="{ 'active' : segment == 'food' }" (click)="onTabSelected('food')">
         <ion-icon name="pizza"></ion-icon>
-        <div class="label">Comida</div>
+        <div class="label">Alimentos</div>
       </div>
       <div class="tab" [ngClass]="{ 'active' : segment == 'profile' }" (click)="onTabSelected('profile')">
         <ion-icon name="person"></ion-icon>
