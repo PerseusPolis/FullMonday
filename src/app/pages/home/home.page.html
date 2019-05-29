@@ -31,7 +31,7 @@
 
   <div class="food-flex" *ngIf="food">
     <div class="food" *ngFor="let element of food">
-      <img [src]="element.picture">
+      <div class="img" [ngStyle]="element.picture"></div>
       <h3>{{element.name}}</h3>
       <p>${{element.price}}</p>
     </div>

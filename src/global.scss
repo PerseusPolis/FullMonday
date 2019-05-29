@@ -54,8 +54,11 @@ ion-button{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    img{
-      max-width: 100%;
+    .img{
+      width: 250px;
+      height: 250px;
+      background-size: cover !important;
+      background-position: center !important;
     }
     h3{
       font-size: 21px;
