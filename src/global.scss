@@ -47,16 +47,17 @@ ion-button{
   align-items: center;
   flex-wrap: wrap;
   .food{
-    flex:0 0 23%;
+    flex:0 0 48%;
     border: 1px solid rgba(0,0,0,.1);
     margin: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
     .img{
-      width: 250px;
-      height: 250px;
+      width: 100px;
+      height: 100px;
       background-size: cover !important;
       background-position: center !important;
     }

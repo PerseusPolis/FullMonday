@@ -6,6 +6,7 @@ import { LoadingController, IonContent } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { Food } from 'src/app/models/food';
 import { User } from 'src/app/models/user';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-home',
@@ -21,14 +22,12 @@ export class HomePage implements OnInit {
   profile_active: boolean = false;
   @ViewChild(IonContent) content: IonContent;
 
-  constructor(
-      private router: Router,
-      private loadingCtrl: LoadingController,
-      private tmdb: TmdbService
-  ) {}
+  constructor(private router: Router, private loadingCtrl: LoadingController, private tmdb: TmdbService) {}
 
   ngOnInit() {
     this.onTabSelected('popular');
+    let carrito: Product[] = [];
+    localStorage.setItem('carrito_arr', JSON.stringify(carrito) );
   }
 
   onTabSelected(segmentValue: string) {
@@ -164,6 +163,19 @@ export class HomePage implements OnInit {
       this.movies = [];
       loading.dismiss();
     });
+  }
+
+  agregarComida(comida: Food){
+    let cache_arr = localStorage.getItem('carrito_arr');
+    let cart_arr: Product[] = JSON.parse(cache_arr);
+    let aux = {
+      name: comida.name,
+      price: comida.price,
+      quantity: 1
+    }
+    cart_arr.push(aux);
+    console.log(cart_arr);
+    localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
   }
 
 }
