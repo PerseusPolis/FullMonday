@@ -72,17 +72,21 @@ ion-button{
     }
   }
 }
+.perfil_foto{
+  text-align: center;
+}
 .perfil{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: url('../src/assets/img/profile.jpg');
-  background-size: cover;
-  background-position: center;
   flex-direction: column;
-  padding: 11em;
-  p{
-    color:#fff;
-    font-weight: 700;
+}
+ion-toolbar{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  ion-title{
+    position: relative;
+    padding: 0;
   }
 }

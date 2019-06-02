@@ -120,7 +120,7 @@ export class HomePage implements OnInit {
       this.profile.name = "John Doe";
       this.profile.email = "john_doe@gmail.com";
       this.profile.birthday = "12 de Mayo de 1990";
-      this.profile.registro = "Miembro desde Abril 2019";
+      this.profile.registro = "21 de Abril de 2019";
     }else{
       this.loadMovies();
     }
