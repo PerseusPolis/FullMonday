@@ -19,7 +19,9 @@ export class HomePage implements OnInit {
   movies: Movie[];
   food: Food[] = [];
   profile: User;
-  profile_active: boolean = false;
+  profile_active = false;
+  carrito = false;
+  cart: Product[] = [];
   @ViewChild(IonContent) content: IonContent;
 
   constructor(private router: Router, private loadingCtrl: LoadingController, private tmdb: TmdbService) {}
@@ -37,6 +39,7 @@ export class HomePage implements OnInit {
     this.food = null;
     this.profile = null;
     this.profile_active = false;
+    this.carrito = false;
     this.content.scrollToTop();
     if(this.segment == "food"){
       this.food = [
@@ -120,6 +123,10 @@ export class HomePage implements OnInit {
       this.profile.email = "john_doe@gmail.com";
       this.profile.birthday = "12 de Mayo de 1990";
       this.profile.registro = "21 de Abril de 2019";
+    }else if(this.segment == "cart"){
+      this.carrito = true;
+      let cache_arr = localStorage.getItem('carrito_arr');
+      this.cart = JSON.parse(cache_arr);
     }else{
       this.loadMovies();
     }
@@ -170,6 +177,22 @@ export class HomePage implements OnInit {
     }
     cart_arr.push(aux);
     localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
+  }
+
+  getSizeCart(){
+    let cache_arr = localStorage.getItem('carrito_arr');
+    let cart_arr: Product[] = JSON.parse(cache_arr);
+    return cart_arr.length;
+  }
+
+  getTotalCart(){
+    let cache_arr = localStorage.getItem('carrito_arr');
+    let cart_arr: Product[] = JSON.parse(cache_arr);
+    let total = 0;
+    cart_arr.forEach( element => {
+      total += element.price;
+    });
+    return total;
   }
 
 }

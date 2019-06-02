@@ -75,6 +75,9 @@ ion-button{
 }
 .perfil_foto{
   text-align: center;
+  img{
+    max-height: 200px;
+  }
 }
 .perfil{
   display: flex;
@@ -96,4 +99,43 @@ ion-toolbar{
   color: #fff;
   padding: 1em;
   text-align: center;
+}
+.tabla_carrito{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: transparent;
+  thead{
+    tr{
+      th{
+        border-top: 0;
+        vertical-align: bottom;
+        border-bottom: 2px solid #ddd;
+        padding: 8px;
+        line-height: 1.42857143;
+      }
+    }
+  }
+  tbody{
+    tr{
+      &:nth-of-type(odd) {
+        background-color: #f9f9f9;
+      }
+      td{
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+      }
+    }
+  }
+}
+.total_carrito{
+  text-align: center;
+  font-weight: 700;
+  font-size: 28px;
+}
+.total_vacio{
+  text-align: center;
+  font-weight: 700;
 }

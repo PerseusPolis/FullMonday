@@ -10,6 +10,7 @@
   <h1 *ngIf="movies && segment == 'upcoming'">Próximamente</h1>
   <h1 *ngIf="food && segment == 'food'">Alimentos</h1>
   <h1 *ngIf="profile_active && segment == 'profile'">Perfil</h1>
+  <h1 *ngIf="carrito && segment == 'cart'">Carrito</h1>
 
   <div class="movies-flex" *ngIf="movies">
     <div class="movie" *ngFor="let movie of movies" (click)="onMovieDetail(movie.id)">
@@ -47,6 +48,27 @@
     </div>
   </div>
 
+  <div *ngIf="carrito">
+    <table class="tabla_carrito" *ngIf="getSizeCart() > 0">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of cart">
+          <td>{{element.name}}</td>
+          <td>${{element.price}}</td>
+          <td>{{element.quantity}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="getSizeCart() > 0" class="total_carrito">Total: ${{getTotalCart()}}</h3>
+    <h3 *ngIf="getSizeCart() == 0" class="total_vacio">Tu carrito está vacío.</h3>
+  </div>
+
   <div class="content-fullscreen-message" *ngIf="movies && movies.length == 0">
     Se ha producido un error, no se han encontrado películas
   </div>
@@ -73,6 +95,10 @@
       <div class="tab" [ngClass]="{ 'active' : segment == 'profile' }" (click)="onTabSelected('profile')">
         <ion-icon name="person"></ion-icon>
         <div class="label">Perfil</div>
+      </div>
+      <div class="tab" [ngClass]="{ 'active' : segment == 'cart' }" (click)="onTabSelected('cart')">
+        <ion-icon name="cart"></ion-icon>
+        <div class="label">Carrito ({{getSizeCart()}})</div>
       </div>
     </div>
   </ion-toolbar>
