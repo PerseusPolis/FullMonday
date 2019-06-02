@@ -135,10 +135,6 @@ export class HomePage implements OnInit {
     this.router.navigate(['movie-detail', id]);
   }
 
-  onSearch() {
-    this.router.navigate(['search']);
-  }
-
   private async loadMovies() {
     let service;
     switch (this.segment) {
