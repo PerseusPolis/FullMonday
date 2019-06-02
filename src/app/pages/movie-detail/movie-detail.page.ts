@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { TmdbService } from '../../services/tmdb.service';
 import { TrackService } from '../../services/track.service';
+import { Product } from 'src/app/models/product';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.page.html',
@@ -32,6 +33,18 @@ export class MovieDetailPage implements OnInit {
   onPersonDetail(id: number) {
     this.router.navigate(['person-detail', id]);
   }
+
+  comprarBoletos(pelicula: Movie){
+    let cache_arr = localStorage.getItem('carrito_arr');
+    let cart_arr: Product[] = JSON.parse(cache_arr);
+    let aux = {
+      name: pelicula.title,
+      price: 70,
+      quantity: 1
+    }
+    cart_arr.push(aux);
+    localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
+  } 
 
 
 }

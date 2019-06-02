@@ -169,7 +169,6 @@ export class HomePage implements OnInit {
       quantity: 1
     }
     cart_arr.push(aux);
-    console.log(cart_arr);
     localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
   }
 
