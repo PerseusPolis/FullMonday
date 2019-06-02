@@ -1,18 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Cine App</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onSearch()">
-        <ion-icon name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
   <h1 *ngIf="movies && segment == 'popular'">Populares</h1>
-  <h1 *ngIf="movies && segment == 'top'">Top</h1>
   <h1 *ngIf="movies && segment == 'upcoming'">Próximamente</h1>
   <h1 *ngIf="food && segment == 'food'">Alimentos</h1>
   <h1 *ngIf="profile_active && segment == 'profile'">Perfil</h1>
@@ -67,10 +61,6 @@
       <div class="tab" [ngClass]="{ 'active' : segment == 'popular' }" (click)="onTabSelected('popular')">
         <ion-icon name="flame"></ion-icon>
         <div class="label">Populares</div>
-      </div>
-      <div class="tab" [ngClass]="{ 'active' : segment == 'top' }" (click)="onTabSelected('top')">
-        <ion-icon name="star"></ion-icon>
-        <div class="label">Top</div>
       </div>
       <div class="tab" [ngClass]="{ 'active' : segment == 'upcoming' }" (click)="onTabSelected('upcoming')">
         <ion-icon name="calendar"></ion-icon>

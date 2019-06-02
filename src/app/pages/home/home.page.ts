@@ -143,7 +143,6 @@ export class HomePage implements OnInit {
     let service;
     switch (this.segment) {
       case 'popular':  service = this.tmdb.getPopularMovies(this.page); break;
-      case 'top':      service = this.tmdb.getTopMovies(this.page); break;
       case 'upcoming': service = this.tmdb.getUpcomingMovies(this.page); break;
     }
     const loadingElement = await this.loadingCtrl.create({
