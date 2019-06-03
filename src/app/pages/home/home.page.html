@@ -65,7 +65,7 @@
           <td>{{element.name}}</td>
           <td>${{element.price}}</td>
           <td>
-            <input type="number" (change)="cambiarCantidad($event,element.name)" value="{{element.quantity}}" >
+            <input type="text" (keypress)="onlyNumbers($event)" (change)="cambiarCantidad($event,element.name)" value="{{element.quantity}}" />
           </td>
         </tr>
       </tbody>
