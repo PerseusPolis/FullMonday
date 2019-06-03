@@ -223,7 +223,7 @@ export class HomePage implements OnInit {
         element.quantity = nueva_cantidad;
       }
     });
-    this.cart = cart_arr;
+    localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
   }
 
 }
