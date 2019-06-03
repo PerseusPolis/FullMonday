@@ -214,4 +214,16 @@ export class HomePage implements OnInit {
     return total;
   }
 
+  cambiarCantidad(cantidad: any,nombre:string){
+    let nueva_cantidad = cantidad.srcElement.value;
+    let cache_arr = localStorage.getItem('carrito_arr');
+    let cart_arr: Product[] = JSON.parse(cache_arr);
+    cart_arr.forEach( element => {
+      if(element.name == nombre){
+        element.quantity = nueva_cantidad;
+      }
+    });
+    this.cart = cart_arr;
+  }
+
 }
