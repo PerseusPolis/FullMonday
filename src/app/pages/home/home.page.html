@@ -63,14 +63,14 @@
       <tbody>
         <tr *ngFor="let element of cart">
           <td>{{element.name}}</td>
-          <td>${{element.price}}</td>
+          <td>{{element.price | currency}}</td>
           <td>
             <input type="text" (keypress)="onlyNumbers($event)" (change)="cambiarCantidad($event,element.name)" value="{{element.quantity}}" />
           </td>
         </tr>
       </tbody>
     </table>
-    <h3 *ngIf="getSizeCart() > 0" class="total_carrito">Total: ${{getTotalCart()}}</h3>
+    <h3 *ngIf="getSizeCart() > 0" class="total_carrito">Total: {{getTotalCart() | currency}}</h3>
     <h3 *ngIf="getSizeCart() == 0" class="total_vacio">Tu carrito está vacío.</h3>
   </div>
 
@@ -103,7 +103,7 @@
       </div>
       <div class="tab" [ngClass]="{ 'active' : segment == 'cart' }" (click)="onTabSelected('cart')">
         <ion-icon name="cart"></ion-icon>
-        <div class="label">Carrito ({{getSizeCart()}})</div>
+        <div class="label">Carrito ({{getSizeCart() | number }})</div>
       </div>
     </div>
   </ion-toolbar>
