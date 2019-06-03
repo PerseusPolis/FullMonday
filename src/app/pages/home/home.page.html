@@ -6,11 +6,11 @@
 
 <ion-content padding>
 
-  <h1 *ngIf="movies && segment == 'popular'">Populares</h1>
-  <h1 *ngIf="movies && segment == 'upcoming'">Próximamente</h1>
-  <h1 *ngIf="food && segment == 'food'">Alimentos</h1>
-  <h1 *ngIf="profile_active && segment == 'profile'">Perfil</h1>
-  <h1 *ngIf="carrito && segment == 'cart'">Carrito</h1>
+  <h1 class="titulo_seccion" *ngIf="movies && segment == 'popular'">Populares</h1>
+  <h1 class="titulo_seccion" *ngIf="movies && segment == 'upcoming'">Próximamente</h1>
+  <h1 class="titulo_seccion" *ngIf="food && segment == 'food'">Alimentos</h1>
+  <h1 class="titulo_seccion" *ngIf="profile_active && segment == 'profile'">Perfil</h1>
+  <h1 class="titulo_seccion" *ngIf="carrito && segment == 'cart'">Carrito</h1>
 
   <div class="movies-flex" *ngIf="movies">
     <div class="movie" *ngFor="let movie of movies" (click)="onMovieDetail(movie.id)">
