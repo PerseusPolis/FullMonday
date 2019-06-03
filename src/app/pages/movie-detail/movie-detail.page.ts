@@ -12,7 +12,7 @@ import { Product } from 'src/app/models/product';
 export class MovieDetailPage implements OnInit {
   movie: Movie;
   boleto_comprado = false;
-
+  mostrar_compra = false;
   constructor(
       private activatedRoute: ActivatedRoute,
       private router: Router,
@@ -23,6 +23,12 @@ export class MovieDetailPage implements OnInit {
   ngOnInit() {
     const movieId = this.activatedRoute.snapshot.params['id'];
     this.getMovieDetail(movieId);
+    let segmento = localStorage.getItem('segmento');
+    if(segmento == 'upcoming'){
+      this.mostrar_compra = false;
+    }else if(segmento == 'popular'){
+      this.mostrar_compra = true;
+    }
     this.boleto_comprado = false;
   }
   getMovieDetail(id: number) {

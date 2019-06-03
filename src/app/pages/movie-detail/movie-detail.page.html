@@ -69,7 +69,7 @@
       ¡Gracias por tu compra! Tu boleto ha sido agregado al carrito.
     </div>
 
-    <div class="comprar_boletos" (click)="comprarBoletos(movie)">
+    <div *ngIf="mostrar_compra" class="comprar_boletos" (click)="comprarBoletos(movie)">
       Comprar Boletos
     </div>
   </div>
