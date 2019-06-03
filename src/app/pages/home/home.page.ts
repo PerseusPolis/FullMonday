@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
 
   onTabSelected(segmentValue: string) {
     this.segment = segmentValue;
+    localStorage.setItem('segmento', this.segment );
     this.page = 1;
     this.movies = null;
     this.food = null;
