@@ -64,7 +64,9 @@
         <tr *ngFor="let element of cart">
           <td>{{element.name}}</td>
           <td>${{element.price}}</td>
-          <td>{{element.quantity}}</td>
+          <td>
+            <input type="number" (change)="cambiarCantidad($event,element.name)" value="{{element.quantity}}" >
+          </td>
         </tr>
       </tbody>
     </table>
