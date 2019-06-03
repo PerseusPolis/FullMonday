@@ -34,7 +34,7 @@
   opacity: 0.2;
 }
 ion-button{
-  background: #488aff;
+  background: #D00000;
   width: 200px;
   margin: 0 auto;
   color: #fff;
@@ -92,10 +92,11 @@ ion-toolbar{
   ion-title{
     position: relative;
     padding: 0;
+    color: #D00000;
   }
 }
 .comprar_boletos{
-  background: #3880ff;
+  background: #D00000;
   color: #fff;
   padding: 1em;
   text-align: center;
@@ -138,4 +139,15 @@ ion-toolbar{
 .total_vacio{
   text-align: center;
   font-weight: 700;
+}
+.button-text,.sc-ion-back-button-ios{
+  color:#D00000;
+}
+.boleto_comprado{
+  padding: 1em;
+  text-align: center;
+  background: #F0C808;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 2em;
 }
