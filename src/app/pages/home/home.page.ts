@@ -175,7 +175,16 @@ export class HomePage implements OnInit {
       price: comida.price,
       quantity: 1
     }
-    cart_arr.push(aux);
+    let repetido = false;
+    cart_arr.forEach( elemento => {
+      if(elemento.name == comida.name){
+        elemento.quantity += 1;
+        repetido = true;
+      }
+    });
+    if(!repetido){
+      cart_arr.push(aux);
+    }
     localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
   }
 
@@ -190,7 +199,7 @@ export class HomePage implements OnInit {
     let cart_arr: Product[] = JSON.parse(cache_arr);
     let total = 0;
     cart_arr.forEach( element => {
-      total += element.price;
+      total += ( element.price * element.quantity);
     });
     return total;
   }

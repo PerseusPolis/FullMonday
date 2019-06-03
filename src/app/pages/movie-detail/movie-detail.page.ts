@@ -11,6 +11,7 @@ import { Product } from 'src/app/models/product';
 })
 export class MovieDetailPage implements OnInit {
   movie: Movie;
+  boleto_comprado = false;
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -22,6 +23,7 @@ export class MovieDetailPage implements OnInit {
   ngOnInit() {
     const movieId = this.activatedRoute.snapshot.params['id'];
     this.getMovieDetail(movieId);
+    this.boleto_comprado = false;
   }
   getMovieDetail(id: number) {
     this.tmdb.getMovieDetail(id).subscribe(res => {
@@ -35,6 +37,7 @@ export class MovieDetailPage implements OnInit {
   }
 
   comprarBoletos(pelicula: Movie){
+    this.boleto_comprado = true;
     let cache_arr = localStorage.getItem('carrito_arr');
     let cart_arr: Product[] = JSON.parse(cache_arr);
     let aux = {
@@ -42,7 +45,16 @@ export class MovieDetailPage implements OnInit {
       price: 70,
       quantity: 1
     }
-    cart_arr.push(aux);
+    let repetido = false;
+    cart_arr.forEach( elemento => {
+      if(elemento.name == pelicula.title){
+        elemento.quantity += 1;
+        repetido = true;
+      }
+    });
+    if(!repetido){
+      cart_arr.push(aux);
+    }
     localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
   } 
 
