@@ -129,7 +129,9 @@ ion-toolbar{
         vertical-align: top;
         border-top: 1px solid #ddd;
         input{
-          width: 100%;
+          width: 70px;
+          border: 1px solid #000;
+          text-align: center;
         }
       }
     }
