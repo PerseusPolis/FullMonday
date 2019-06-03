@@ -65,10 +65,13 @@
       </div>
     </div>
 
+    <div *ngIf="boleto_comprado" class="boleto_comprado">
+      ¡Gracias por tu compra! Tu boleto ha sido agregado al carrito.
+    </div>
+
     <div class="comprar_boletos" (click)="comprarBoletos(movie)">
       Comprar Boletos
     </div>
-
   </div>
 
 </ion-content>
