@@ -9,7 +9,7 @@ ion-toolbar .tabs {
     width: calc(100% / 3);
     color: #8c8c8c;
     &.active {
-      color: #488aff;
+      color: #D00000;
     }
     ion-icon {
       font-size: 30px;
@@ -95,4 +95,9 @@ h1 {
       }
     }
   }
+}
+.titulo_seccion{
+  border-bottom: 2px solid #D00000;
+  padding-bottom: 0.5em;
+  text-align: center;
 }
