@@ -56,6 +56,9 @@ export class MovieDetailPage implements OnInit {
       cart_arr.push(aux);
     }
     localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
+    setTimeout(() => {
+      this.boleto_comprado = false;
+    }, 5000);
   } 
 
 

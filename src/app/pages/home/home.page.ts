@@ -22,12 +22,14 @@ export class HomePage implements OnInit {
   profile_active = false;
   carrito = false;
   cart: Product[] = [];
+  alimento_comprado = false;
   @ViewChild(IonContent) content: IonContent;
 
   constructor(private router: Router, private loadingCtrl: LoadingController, private tmdb: TmdbService) {}
 
   ngOnInit() {
     this.onTabSelected('popular');
+    this.alimento_comprado = false;
     let carrito: Product[] = [];
     localStorage.setItem('carrito_arr', JSON.stringify(carrito) );
   }
@@ -168,6 +170,7 @@ export class HomePage implements OnInit {
   }
 
   agregarComida(comida: Food){
+    this.alimento_comprado =  true;
     let cache_arr = localStorage.getItem('carrito_arr');
     let cart_arr: Product[] = JSON.parse(cache_arr);
     let aux = {
@@ -186,12 +189,19 @@ export class HomePage implements OnInit {
       cart_arr.push(aux);
     }
     localStorage.setItem('carrito_arr', JSON.stringify(cart_arr) );
+    setTimeout(() => {
+      this.alimento_comprado = false;
+    }, 5000);
   }
 
   getSizeCart(){
     let cache_arr = localStorage.getItem('carrito_arr');
     let cart_arr: Product[] = JSON.parse(cache_arr);
-    return cart_arr.length;
+    let total = 0;
+    cart_arr.forEach( element => {
+      total += element.quantity;
+    });
+    return total;
   }
 
   getTotalCart(){
@@ -199,7 +209,7 @@ export class HomePage implements OnInit {
     let cart_arr: Product[] = JSON.parse(cache_arr);
     let total = 0;
     cart_arr.forEach( element => {
-      total += ( element.price * element.quantity);
+      total += ( element.price * element.quantity );
     });
     return total;
   }
