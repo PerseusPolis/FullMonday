@@ -189,6 +189,8 @@ export class HomePage implements OnInit {
         Producto: producto.name
       });
     });
+    let carrito: Product[] = [];
+    localStorage.setItem('carrito_arr', JSON.stringify(carrito) );
     setTimeout(() => {
       this.compra_hecha = false;
     }, 5000);
