@@ -8,6 +8,7 @@ import { Food } from 'src/app/models/food';
 import { User } from 'src/app/models/user';
 import { Product } from 'src/app/models/product';
 import { AngularFireDatabase, AngularFireList   } from 'angularfire2/database';
+import { defineBase } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomePage implements OnInit {
   carrito = false;
   cart: Product[] = [];
   alimento_comprado = false;
+  compra_hecha = false;
   @ViewChild(IonContent) content: IonContent;
 
   constructor(private router: Router, private loadingCtrl: LoadingController, private tmdb: TmdbService, private db: AngularFireDatabase) {}
@@ -173,6 +175,23 @@ export class HomePage implements OnInit {
     }
     input = String.fromCharCode(e.which);
     return !!/[\d\s]/.test(input);
+  }
+
+  guardarCompra(){
+    this.compra_hecha = true;
+    let cache_arr = localStorage.getItem('carrito_arr');
+    let cart_arr: Product[] = JSON.parse(cache_arr);
+    let ref = this.db.database.ref('Orders');
+    cart_arr.forEach( producto => {
+      ref.push({
+        Cantidad: producto.quantity,
+        Precio: producto.price,
+        Producto: producto.name
+      });
+    });
+    setTimeout(() => {
+      this.compra_hecha = false;
+    }, 5000);
   }
 
 }
