@@ -29,8 +29,8 @@
       ¡Gracias por tu compra! Tu alimento ha sido agregado al carrito.
     </div>
     <div class="food" *ngFor="let element of food" (click)="agregarComida(element)">
-      <div class="img" [ngStyle]="element.picture"></div>
-      <h3>{{element.name}}</h3>
+      <div class="img" [ngStyle]="element.image_url"></div>
+      <h3>{{element.productName}}</h3>
       <p>${{element.price}}</p>
     </div>
   </div>

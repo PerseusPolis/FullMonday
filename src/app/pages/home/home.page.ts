@@ -7,6 +7,7 @@ import { ViewChild } from '@angular/core';
 import { Food } from 'src/app/models/food';
 import { User } from 'src/app/models/user';
 import { Product } from 'src/app/models/product';
+import { AngularFireDatabase, AngularFireList   } from 'angularfire2/database';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomePage implements OnInit {
   segment: string;
   page: number;
   movies: Movie[];
-  food: Food[] = [];
+  food: Food[];
   profile: User;
   profile_active = false;
   carrito = false;
@@ -25,7 +26,7 @@ export class HomePage implements OnInit {
   alimento_comprado = false;
   @ViewChild(IonContent) content: IonContent;
 
-  constructor(private router: Router, private loadingCtrl: LoadingController, private tmdb: TmdbService) {}
+  constructor(private router: Router, private loadingCtrl: LoadingController, private tmdb: TmdbService, private db: AngularFireDatabase) {}
 
   ngOnInit() {
     this.onTabSelected('popular');
@@ -45,80 +46,10 @@ export class HomePage implements OnInit {
     this.carrito = false;
     this.content.scrollToTop();
     if(this.segment == "food"){
-      this.food = [
-        {
-          name: "Palomitas Grandes",
-          picture: {'background-image': 'url(https://images-na.ssl-images-amazon.com/images/I/71F9coQJt8L._SY450_.jpg)'},
-          price: 120,
-          quantity: 0
-        },
-        {
-          name: "Palomitas Medianas",
-          picture: {'background-image': 'url(https://www.100daysofrealfood.com/wp-content/uploads/2011/06/popcorn1.jpg)'},
-          price: 80,
-          quantity: 0
-        },
-        {
-          name: "Palomitas Chicas",
-          picture: {'background-image': 'url(https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/12/8/1/JE0205H_Cacio-Pepe-Popcorn_s4x3.jpg.rend.hgtvcom.616.462.suffix/1481216491893.jpeg)'},
-          price: 50,
-          quantity: 0
-        },
-        {
-          name: "Refresco Grande",
-          picture: {'background-image': 'url(https://i.kinja-img.com/gawker-media/image/upload/s--hXMW9u2A--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/xtb8ldxhnxu83glrscs0.jpg)'},
-          price: 90,
-          quantity: 0
-        },
-        {
-          name: "Refresco Mediano",
-          picture: {'background-image': 'url(https://brofeed.com/wp-content/uploads/2017/11/150617-sodaglass-stock.jpg)'},
-          price: 70,
-          quantity: 0
-        },
-        {
-          name: "Refresco Chico",
-          picture: {'background-image': 'url(https://ddi.tradesuppliesinc.com/Handlers/ImageHandler.ashx?im=22394.jpg)'},
-          price: 50,
-          quantity: 0
-        },
-        {
-          name: "Nachos",
-          picture: {'background-image': 'url(https://okdiario.com/img/2018/02/27/nachos-con-queso-655x368.jpg)'},
-          price: 40,
-          quantity: 0
-        },
-        {
-          name: "Hot Dog",
-          picture: {'background-image': 'url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/barbecue-grilled-hot-dog-with-yellow-mustard-and-royalty-free-image-808146592-1552657310.jpg?crop=1.00xw:0.752xh;0,0&resize=1200:*)'},
-          price: 35,
-          quantity: 0
-        },
-        {
-          name: "Pizza",
-          picture: {'background-image': 'url(https://assets.bonappetit.com/photos/5a9dd672eb730726d6c7ec19/16:9/w_1280,c_limit/pizza-slice-opener-pepperoni-cheese.jpg)'},
-          price: 45,
-          quantity: 0
-        },
-        {
-          name: "Helado",
-          picture: {'background-image': 'url(https://www.biggerbolderbaking.com/wp-content/uploads/2015/03/BBB64-Ice-Cream-Party-Thumbnail-FINAL.jpg)'},
-          price: 40,
-          quantity: 0
-        },
-        {
-          name: "Crepa",
-          picture: {'background-image': 'url(https://www.philadelphia.com.mx/modx/assets/img/revision2016/images/recetas/recetas_2015/CREPASDEQUESOYZARZAMORA001-780x530.jpg)'},
-          price: 60,
-          quantity: 0
-        },
-        {
-          name: "ICEE",
-          picture: {'background-image': 'url(http://dplicensing.com/wp-content/uploads/2013/01/icee.jpg)'},
-          price: 80,
-          quantity: 0
-        }
-      ];
+      this.db.list<Food>('/FoodProducts').valueChanges().subscribe((values) => {
+        this.food = values;
+        console.log(this.food);
+      });
     }else if(this.segment == "profile"){
       this.profile_active = true;
       this.profile = new User();
