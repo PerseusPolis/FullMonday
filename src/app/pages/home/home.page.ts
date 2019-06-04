@@ -48,7 +48,6 @@ export class HomePage implements OnInit {
     if(this.segment == "food"){
       this.db.list<Food>('/FoodProducts').valueChanges().subscribe((values) => {
         this.food = values;
-        console.log(this.food);
       });
     }else if(this.segment == "profile"){
       this.profile_active = true;
@@ -106,13 +105,13 @@ export class HomePage implements OnInit {
     let cache_arr = localStorage.getItem('carrito_arr');
     let cart_arr: Product[] = JSON.parse(cache_arr);
     let aux = {
-      name: comida.name,
+      name: comida.productName,
       price: comida.price,
       quantity: 1
     }
     let repetido = false;
     cart_arr.forEach( elemento => {
-      if(elemento.name == comida.name){
+      if(elemento.name == comida.productName){
         elemento.quantity += 1;
         repetido = true;
       }

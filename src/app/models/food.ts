@@ -1,6 +1,6 @@
 export interface Food {
-  name: string;
-  picture: any;
+  productName: string;
+  image_url: any;
   price: number;
   quantity: number;
 }
